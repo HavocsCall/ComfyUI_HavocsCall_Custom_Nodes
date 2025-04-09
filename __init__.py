@@ -1,6 +1,5 @@
 from .nodes.Basic_Nodes import *
 from .nodes.Conversion_Nodes import *
-from .nodes.Prompt_Styler_Nodes import *
 from .nodes.Switch_Nodes import *
 
 NODE_CLASS_MAPPINGS = {
@@ -18,10 +17,6 @@ NODE_CLASS_MAPPINGS = {
     "Float to String": HC_Float_to_String,
     "Int to Float": HC_Int_to_Float,
     "Int to String": HC_Int_to_String,
-    
-    #------------------------------------------------------------------------------------------#
-    #-----Prompt Styler Nodes-----
-    **{name.replace(' ', ''): type(name.replace(' ', ''), (SDXLPromptStyler, ), {'menus': menus}) for name, menus in NODES.items()},
 
     #------------------------------------------------------------------------------------------#
     #-----Switch Nodes-----
@@ -49,10 +44,6 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Float to String": "Float to String",
     "Int to Float": "Int to Float",
     "Int to String": "Int to String",
-    
-    #------------------------------------------------------------------------------------------#
-    #-----Prompt Styler Nodes-----
-    **{name.replace(' ', ''): name for name in NODES.keys()},
 
     #------------------------------------------------------------------------------------------#
     #-----Switch Nodes-----

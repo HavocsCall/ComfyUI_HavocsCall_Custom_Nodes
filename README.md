@@ -21,27 +21,6 @@ git clone https://github.com/HavocsCall/comfyui_HavocsCall_Custom_Nodes.git
 - Int to Float - Converts an `INTEGER` to a `FLOAT`.
 - Int to String - Converts an `INTEGER` to a `STRING`.
 
-### Prompt Styler Nodes
-- json based Prompt Styler - Create a .json file in the `Styler_Data` folder formatted like this:
-```json
-[
-    {
-        "name": "None",
-        "positive_prompt": "{prompt}",
-        "negative_prompt": "{prompt}"
-    },
-    {
-        "name": "Example",
-        "positive_prompt": "{prompt}, Example",
-        "negative_prompt": "Example, {prompt}"
-    },
-    {
-        etc...
-    }
-]
-```
-Each .json file will create it's own node with the name of the .json file + Styler.
-
 ### Switch Nodes
 - Clip Switch - Switches between two `CLIPS`.
 - Conditioning Switch - Switches between two `CONDITIONING`.

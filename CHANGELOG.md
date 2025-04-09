@@ -14,9 +14,6 @@
 - Int to Float
 - Int to String
 
-### Prompt Styler Nodes
-- Prompt Stylers
-
 ### Switch Nodes
 - Clip Switch
 - Conditioning Switch
