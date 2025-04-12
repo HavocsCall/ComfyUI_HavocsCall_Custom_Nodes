@@ -1,0 +1,14 @@
+[project]
+name = "havocscall_custom_nodes"
+description = ""
+version = "1.0.0"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/HavocsCall/ComfyUI_HavocsCall_Custom_Nodes"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI_HavocsCall_Custom_Nodes"
+Icon = ""
