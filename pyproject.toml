@@ -5,7 +5,7 @@ version = "#{VERSION}#"
 license = {file = "LICENSE"}
 
 [project.urls]
-Repository = "https://github.com/HavocsCall/ComfyUI_HavocsCall_Custom_Nodes"
+Repository = "#{REPO}#"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]

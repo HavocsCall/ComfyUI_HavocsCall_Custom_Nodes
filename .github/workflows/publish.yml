@@ -33,6 +33,7 @@ jobs:
           files: 'pyproject.toml'
         env:
           VERSION: ${{steps.get_version.outputs.version-without-v}}
+          REPO: https://github.com/${{github.repository}}
 
       - name: Publish Custom Node
         uses: Comfy-Org/publish-node-action@v1
