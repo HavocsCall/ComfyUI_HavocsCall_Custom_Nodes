@@ -1,6 +1,3 @@
-# TODO
-# - Make each switch bypass the non-slected nodes - No idea how yet.
-
 #------------------------------------------------------------------------------------------#
 #-----Clip Switch-----
 class HC_Clip_Switch:
@@ -8,30 +5,20 @@ class HC_Clip_Switch:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "Selection": ("INT", {
-                    "default": 1,
-                    "min": 1,
-                    "max": 2
-                }),
-                "Clip_1": ("CLIP", {
-                    "forceInput": True
-                }),
+                "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),
+                "Clip_1": ("CLIP", {"forceInput": True}),
             },
             "optional": {
-                "Clip_2": ("CLIP", {
-                    "forceInput": True
-                })
+                "Clip_2": ("CLIP", {"forceInput": True})
             }
         }
     
     RETURN_TYPES = ("CLIP", "INT",)
     RETURN_NAMES = ("Clip", "Selection",)
-
-    FUNCTION = "Clip_Switch"
-
+    FUNCTION = "clip_switch"
     CATEGORY = "HavocsCall/Switches"
 
-    def Clip_Switch(self, Selection, Clip_1, Clip_2,):
+    def clip_switch(self, Selection, Clip_1, Clip_2,):
         match Selection:
             case 1:
                 return (Clip_1, Selection,)
@@ -44,30 +31,20 @@ class HC_Conditioning_Switch:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "Selection": ("INT", {
-                    "default": 1,
-                    "min": 1,
-                    "max": 2
-                }),
-                "Conditioning_1": ("CONDITIONING", {
-                    "forceInput": True
-                }),
+                "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),
+                "Conditioning_1": ("CONDITIONING", {"forceInput": True}),
             },
             "optional": {
-                "Conditioning_2": ("CONDITIONING", {
-                    "forceInput": True
-                })
+                "Conditioning_2": ("CONDITIONING", {"forceInput": True})
             }
         }
     
     RETURN_TYPES = ("CONDITIONING", "INT",)
     RETURN_NAMES = ("Conditioning", "Selection",)
-
-    FUNCTION = "Conditioning_Switch"
-
+    FUNCTION = "conditioning_switch"
     CATEGORY = "HavocsCall/Switches"
 
-    def Conditioning_Switch(self, Selection, Conditioning_1, Conditioning_2,):
+    def conditioning_switch(self, Selection, Conditioning_1, Conditioning_2,):
         match Selection:
             case 1:
                 return (Conditioning_1, Selection,)
@@ -81,30 +58,20 @@ class HC_Image_Switch:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "Selection": ("INT", {
-                    "default": 1,
-                    "min": 1,
-                    "max": 2
-                }),
-                "Image_1": ("IMAGE", {
-                    "forceInput": True
-                })
+                "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),
+                "Image_1": ("IMAGE", {"forceInput": True})
             },
             "optional": {
-                "Image_2": ("IMAGE", {
-                    "forceInput": True
-                })
+                "Image_2": ("IMAGE", {"forceInput": True})
             }
         }
     
     RETURN_TYPES = ("IMAGE", "INT",)
     RETURN_NAMES = ("Image", "Selection",)
-
-    FUNCTION = "Image_Switch"
-
+    FUNCTION = "image_switch"
     CATEGORY = "HavocsCall/Switches"
 
-    def Image_Switch(self, Selection, Image_1, Image_2,):
+    def image_switch(self, Selection, Image_1, Image_2,):
         match Selection:
             case 1:
                 return (Image_1, Selection,)
@@ -118,30 +85,20 @@ class HC_Latent_Switch:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "Selection": ("INT", {
-                    "default": 1,
-                    "min": 1,
-                    "max": 2
-                }),
-                "Latent_1": ("LATENT", {
-                    "forceInput": True
-                })
+                "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),
+                "Latent_1": ("LATENT", {"forceInput": True})
             },
             "optional": {
-                "Latent_2": ("LATENT", {
-                    "forceInput": True
-                })
+                "Latent_2": ("LATENT", {"forceInput": True})
             }
         }
     
     RETURN_TYPES = ("LATENT", "INT",)
     RETURN_NAMES = ("Latent", "Selection",)
-
-    FUNCTION = "Latent_Switch"
-
+    FUNCTION = "latent_switch"
     CATEGORY = "HavocsCall/Switches"
 
-    def Latent_Switch(self, Selection, Latent_1, Latent_2,):
+    def latent_switch(self, Selection, Latent_1, Latent_2,):
         match Selection:
             case 1:
                 return (Latent_1, Selection,)
@@ -155,29 +112,19 @@ class HC_Model_Switch:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "Selection": ("INT", {
-                    "default": 1,
-                    "min": 1,
-                    "max": 2
-                }),
-                "Model_1": ("MODEL", {
-                    "forceInput": True
-                })
+                "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),
+                "Model_1": ("MODEL", {"forceInput": True})
             },
             "optional": {
-                "Model_2": ("MODEL", {
-                    "forceInput": True
-                })
+                "Model_2": ("MODEL", {"forceInput": True})
             }
         }    
     RETURN_TYPES = ("MODEL", "INT",)
     RETURN_NAMES = ("Model", "Selection",)
-
-    FUNCTION = "Model_Switch"
-
+    FUNCTION = "model_switch"
     CATEGORY = "HavocsCall/Switches"
 
-    def Model_Switch(self, Selection, Model_1, Model_2,):
+    def model_switch(self, Selection, Model_1, Model_2,):
         match Selection:
             case 1:
                 return (Model_1, Selection,)
@@ -191,30 +138,20 @@ class HC_String_Switch:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "Selection": ("INT", {
-                    "default": 1,
-                    "min": 1,
-                    "max": 2
-                }),
-                "String_1": ("STRING", {
-                    "forceInput": True
-                })
+                "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),
+                "String_1": ("STRING", {"forceInput": True})
             },
             "optional": {
-                "String_2": ("STRING", {
-                    "forceInput": True
-                })
+                "String_2": ("STRING", {"forceInput": True})
             }    
         }
     
     RETURN_TYPES = ("STRING", "INT",)
     RETURN_NAMES = ("String", "Selection",)
-
-    FUNCTION = "String_Switch"
-
+    FUNCTION = "string_switch"
     CATEGORY = "HavocsCall/Switches"
 
-    def String_Switch(self, Selection, String_1, String_2,):
+    def string_switch(self, Selection, String_1, String_2,):
         match Selection:
             case 1:
                 return (String_1, Selection,)
@@ -228,30 +165,20 @@ class HC_VAE_Switch:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "Selection": ("INT", {
-                    "default": 1,
-                    "min": 1,
-                    "max": 2
-                }),
-                "VAE_1": ("VAE", {
-                    "forceInput": True
-                })
+                "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),
+                "VAE_1": ("VAE", {"forceInput": True})
             },
             "optional": {
-                "VAE_2": ("VAE", {
-                    "forceInput": True
-                })
+                "VAE_2": ("VAE", {"forceInput": True})
             }
         }
     
     RETURN_TYPES = ("VAE", "INT",)
     RETURN_NAMES = ("VAE", "Selection",)
-
-    FUNCTION = "VAE_Switch"
-
+    FUNCTION = "vae_switch"
     CATEGORY = "HavocsCall/Switches"
 
-    def VAE_Switch(self, Selection, VAE_1=None, VAE_2=None,):
+    def vae_switch(self, Selection, VAE_1, VAE_2,):
         match Selection:
             case 1:
                 return (VAE_1, Selection,)

@@ -1,5 +1,6 @@
 from .nodes.Basic_Nodes import *
 from .nodes.Conversion_Nodes import *
+from .nodes.Prompt_Styler_Nodes import *
 from .nodes.Switch_Nodes import *
 
 NODE_CLASS_MAPPINGS = {
@@ -17,6 +18,10 @@ NODE_CLASS_MAPPINGS = {
     "Float to String": HC_Float_to_String,
     "Int to Float": HC_Int_to_Float,
     "Int to String": HC_Int_to_String,
+
+    #------------------------------------------------------------------------------------------#
+    #-----Prompt Styler Node-----
+    "Prompt Styler": HC_Prompt_Styler,
 
     #------------------------------------------------------------------------------------------#
     #-----Switch Nodes-----
@@ -44,6 +49,10 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Float to String": "Float to String",
     "Int to Float": "Int to Float",
     "Int to String": "Int to String",
+
+    #------------------------------------------------------------------------------------------#
+    #-----Prompt Styler Node-----
+    "Prompt Styler": "Prompt Styler",
 
     #------------------------------------------------------------------------------------------#
     #-----Switch Nodes-----

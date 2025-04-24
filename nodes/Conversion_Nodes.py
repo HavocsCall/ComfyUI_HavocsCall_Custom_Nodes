@@ -5,22 +5,16 @@ class HC_Float_to_Int:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "Float": ("FLOAT", {
-                    "forceInput": True
-                })
+                "Float": ("FLOAT", {"forceInput": True})
             }
         }
     
     RETURN_TYPES = ("INT",)
     RETURN_NAMES = ("Integer",)
-
-    FUNCTION = "Float_to_Int"
-
-    OUTPUT_NODE = True
-
+    FUNCTION = "float_to_int"
     CATEGORY = "HavocsCall/Conversion"
 
-    def Float_to_Int(self, Float,):
+    def float_to_int(self, Float,):
         return (round(Float),)
 
 #------------------------------------------------------------------------------------------#
@@ -30,22 +24,16 @@ class HC_Float_to_String:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "Float": ("FLOAT", {
-                    "forceInput": True
-                })
+                "Float": ("FLOAT", {"forceInput": True})
             }
         }
     
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("String",)
-
-    FUNCTION = "Float_to_String"
-
-    OUTPUT_NODE = True 
-
+    FUNCTION = "float_to_string"
     CATEGORY = "HavocsCall/Conversion"
 
-    def Float_to_String(self, Float,):
+    def float_to_string(self, Float,):
         return (str(Float),)
 
 #------------------------------------------------------------------------------------------#
@@ -55,22 +43,16 @@ class HC_Int_to_Float:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "Integer": ("INT", {
-                    "forceInput": True
-                })
+                "Integer": ("INT", {"forceInput": True})
             }
         }
     
     RETURN_TYPES = ("FLOAT",)
     RETURN_NAMES = ("Float",)
-
-    FUNCTION = "Int_to_Float"
-
-    OUTPUT_NODE = True
-
+    FUNCTION = "int_to_float"
     CATEGORY = "HavocsCall/Conversion"
 
-    def Int_to_Float(self, Integer,):
+    def int_to_float(self, Integer,):
         return (float(Integer),)
 
 #------------------------------------------------------------------------------------------#
@@ -80,20 +62,14 @@ class HC_Int_to_String:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "Integer": ("INT", {
-                    "forceInput": True
-                })
+                "Integer": ("INT", {"forceInput": True})
             }
         }
     
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("String",)
-
-    FUNCTION = "Int_to_String"
-
-    OUTPUT_NODE = True
-
+    FUNCTION = "int_to_string"
     CATEGORY = "HavocsCall/Conversion"
 
-    def Int_to_String(self, Integer,):
+    def int_to_string(self, Integer,):
         return (str(Integer),)

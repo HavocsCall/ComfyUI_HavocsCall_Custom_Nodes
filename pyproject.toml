@@ -1,7 +1,7 @@
 [project]
 name = "havocscall_custom_nodes"
 description = ""
-version = "1.0.0"
+version = "#{VERSION}#"
 license = {file = "LICENSE"}
 
 [project.urls]
@@ -10,5 +10,5 @@ Repository = "https://github.com/HavocsCall/ComfyUI_HavocsCall_Custom_Nodes"
 
 [tool.comfy]
 PublisherId = "havocscall"
-DisplayName = "ComfyUI_HavocsCall_Custom_Nodes"
+DisplayName = "HavocsCall_Custom_Nodes"
 Icon = ""

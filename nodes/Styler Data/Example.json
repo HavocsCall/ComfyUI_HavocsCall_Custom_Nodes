@@ -1,0 +1,12 @@
+[
+    {
+        "Name": "Example - 1",
+        "Positive_Style": "Positive Example 1, {prompt}",
+        "Negative_Style": "{prompt}, Negative Example 1"
+    },
+    {
+        "Name": "Example - 2",
+        "Positive_Style": "{prompt}, Positive Example 2",
+        "Negative_Style": "Negative Example 2, {prompt}"
+    }
+]
