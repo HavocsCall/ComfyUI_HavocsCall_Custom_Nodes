@@ -10,6 +10,7 @@ NODE_CLASS_MAPPINGS = {
     "Int Selector": HC_Int_Selector,
     "Prompt Combiner": HC_Prompt_Combiner,
     "Sampler Config": HC_Sampler_Config,
+    "Save Image": HC_Save_Image,
     "Text Box": HC_Text_Box,
 
     #------------------------------------------------------------------------------------------#
@@ -41,6 +42,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Int Selector": "Int Selector",
     "Prompt Combiner": "Prompt Combiner",
     "Sampler Config": "Sampler Config",
+    "Save Image": "Save Image",
     "Text Box": "Text Box",
 
     #------------------------------------------------------------------------------------------#

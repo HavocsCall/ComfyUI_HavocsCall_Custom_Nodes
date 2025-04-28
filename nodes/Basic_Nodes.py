@@ -1,5 +1,18 @@
+#------------------------------------------------------------------------------------------#
+# For HC_Sampler_Config
 import comfy.samplers
+import folder_paths
 import torch
+
+#------------------------------------------------------------------------------------------#
+# For HC_Save_Image
+import json
+import numpy as np
+from pathlib import Path
+from PIL import Image
+from PIL.PngImagePlugin import PngInfo
+import time
+#import torch
 
 #------------------------------------------------------------------------------------------#
 #-----Float Selector-----
@@ -16,9 +29,11 @@ class HC_Float_Selector:
     RETURN_NAMES = ("Float",)
     FUNCTION = "float_selector"
     CATEGORY = "HavocsCall/Basic"
+    DESCRIPTION = "Select a float value."
 
     def float_selector(self, Float,):
         return (Float,)
+
 #------------------------------------------------------------------------------------------#
 #-----Int Selector-----
 class HC_Int_Selector:
@@ -34,6 +49,7 @@ class HC_Int_Selector:
     RETURN_NAMES = ("Int",)
     FUNCTION = "int_selector"
     CATEGORY = "HavocsCall/Basic"
+    DESCRIPTION = "Select an int value."
 
     def int_selector(self, Int,):
         return (Int,)
@@ -59,6 +75,7 @@ class HC_Prompt_Combiner:
     RETURN_NAMES = ("Prompt",)
     FUNCTION = "prompt_combiner"
     CATEGORY = "HavocsCall/Basic"
+    DESCRIPTION = "Combine prompt parts into a single prompt."
 
     def prompt_combiner(self, Style="", Subject="", Clothing="", Action="", Environment="", Extra=""):
         prompt_parts = [part for part in [Style, Subject, Clothing, Action, Environment, Extra] if part]
@@ -79,7 +96,6 @@ class HC_Sampler_Config:
         "SD1.5 - 16:9 cinema 910x512",
         "SD1.5 - 1.85:1 cinema 952x512",
         "SD1.5 - 2:1 cinema 1024x512",
-        "SD1.5 - 2.39:1 anamorphic 1224x512",
         "SDXL - 1:1 Square 1024 x 1024",
         "SDXL - 3:4 Portrait 896 x 1152",
         "SDXL - 5:8 Portrait 832 x 1216",
@@ -112,6 +128,7 @@ class HC_Sampler_Config:
     RETURN_NAMES = ("Empty_Latent", "Seed", "Steps", "CFG","Sampler", "Scheduler", "Denoise", "Width", "Height", "Batch_Size",)
     FUNCTION = "sampler_config"
     CATEGORY = "HavocsCall/Basic"
+    DESCRIPTION = "Configure sampler settings."
 
     def sampler_config(self, seed, Steps, CFG, Sampler, Scheduler, Denoise, Aspect_Ratio, Width, Height, Batch_Size,):
         match Aspect_Ratio:
@@ -135,8 +152,6 @@ class HC_Sampler_Config:
                 Width, Height = 952, 512
             case "SD1.5 - 2:1 cinema 1024x512":
                 Width, Height = 1024, 512
-            case "SD1.5 - 2.39:1 anamorphic 1224x512":
-                Width, Height = 1224, 512
             case "SDXL - 1:1 Square 1024 x 1024":
                 Width, Height = 1024, 1024
             case "SDXL - 3:4 Portrait 896 x 1152":
@@ -162,32 +177,105 @@ class HC_Sampler_Config:
 
 #------------------------------------------------------------------------------------------#
 #-----Save Image-----
-# Work in progress, not fully functional yet.
 class HC_Save_Image:
+    def replace_variables(input, image_width, image_height) -> str:
+        now = time.localtime()
+        replacements = {
+            "%day%": str(now.tm_mday).zfill(2),
+            "%height%": str(image_height),
+            "%hour%": str(now.tm_hour).zfill(2),
+            "%minute%": str(now.tm_min).zfill(2),
+            "%month%": str(now.tm_mon).zfill(2),
+            "%second%": str(now.tm_sec).zfill(2),
+            "%width%": str(image_width),
+            "%year%": str(now.tm_year)
+        }
+
+        for replace_variable, value in replacements.items():
+            input = input.replace(replace_variable, value)
+
+        return input
+    
     @classmethod
     def INPUT_TYPES(s):
         return {
             "required": {
-                "Image": ("IMAGE",),
+                "Images": ("IMAGE", {"forceInput": True}),
                 "Folder_Name": ("STRING", {"default": ""}),
-                "File_Name": ("STRING", {"default": "",})
+                "File_Name_Prefix": ("STRING", {"default": "ComfyUI"}),
+                "Save_Metadata": ("BOOLEAN", {"default": True, "label_on": "Yes", "label_off": "No"}),
             },
             "hidden": {
-                "Prompt": "PROMPT",
-                "Extra_PNG_Info": "EXTRA_PNGINFO"
-            }
+                "prompt": "PROMPT",
+                "extra_pnginfo": "EXTRA_PNGINFO"
+            }, 
         }
-    
+
     RETURN_TYPES = ()
-    RETURN_NAMES = ()
-    FUNCTION = "save_image"
+    FUNCTION = "save_images"
+    OUTPUT_NODE = True
     CATEGORY = "HavocsCall/Basic"
+    DESCRIPTION = "Saves the input images to your ComfyUI output directory."
 
-    def save_image(self, Image, Folder_Name="", File_Name=""):
-        Path_Parts = [part for part in [Folder_Name, File_Name,] if part]
-        Full_Path = "/".join(Path_Parts)
-        return (Full_Path,)
+    def save_images(self, Images, Folder_Name, Save_Metadata, File_Name_Prefix = "ComfyUI", prompt = None, extra_pnginfo = None):
+        output_dir = Path(folder_paths.get_output_directory())
+        image_height = Images[0].shape[0]
+        image_width = Images[0].shape[1]
 
+        # Replace variables in the folder name
+        Folder_Name = HC_Save_Image.replace_variables(Folder_Name, image_width, image_height) if "%" in Folder_Name else Folder_Name
+
+        # Create folder if it does not exist
+        full_path = output_dir / Folder_Name if Folder_Name else output_dir
+        full_path.mkdir(parents=True, exist_ok=True)
+        
+        # Replace variables in the file name prefix
+        File_Name_Prefix = HC_Save_Image.replace_variables(File_Name_Prefix, image_width, image_height) if "%" in File_Name_Prefix else File_Name_Prefix
+
+        # Determine counter
+        try:
+            files = full_path.iterdir()
+            counter = max(
+                (int(f.stem.split("_")[-1]) for f in files if f.is_file() and f.stem.startswith(File_Name_Prefix)),
+                default=0
+            ) + 1
+        except ValueError:
+            counter = 1
+        
+        results = list()
+
+        # Prepare images
+        for (batch_number, image) in enumerate(Images):
+            i = 255. * image.cpu().numpy()
+            img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
+
+            # Prepare metadata
+            metadata = None
+            if Save_Metadata:
+                metadata = PngInfo()
+                if prompt is not None:
+                    metadata.add_text("prompt", json.dumps(prompt))
+                if extra_pnginfo is not None:
+                    for x in extra_pnginfo:
+                        metadata.add_text(x, json.dumps(extra_pnginfo[x]))
+
+            # Add counter to the file name
+            file_name = f"{File_Name_Prefix}_{counter:05}.png"
+
+            # Save the image
+            img.save(full_path / file_name, pnginfo = metadata, compress_level = 4)
+            
+            # Add ComfyUI specific stuff
+            results.append({
+                "filename": file_name,
+                "subfolder": str(full_path),
+                "type": "output"
+            })
+
+            counter += 1
+        
+        return {"ui": {"images": results}}
+    
 #------------------------------------------------------------------------------------------#
 #-----Text Box-----
 class HC_Text_Box:
@@ -203,6 +291,7 @@ class HC_Text_Box:
     RETURN_NAMES = ("Text",)
     FUNCTION = "text_box"
     CATEGORY = "HavocsCall/Basic"
+    DESCRIPTION = "Create a string value"
 
     def text_box(self, Text,):
         return (Text,)

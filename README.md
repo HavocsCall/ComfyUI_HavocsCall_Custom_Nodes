@@ -1,17 +1,20 @@
-# HavocsCall's Custom ComfyUI Nodes
-
+# HavocsCall's ComfyUI Custom Nodes
 Some quality of life nodes for ComfyUI.
 ## Installation
+### Recommended
+Install with ComfyUI manager
+### Manual
 Clone with git into your custom_nodes folder
 ```
 git clone https://github.com/HavocsCall/comfyui_HavocsCall_Custom_Nodes.git
-```
+```  
 ## Features
 ### Basic Nodes
 - Float Selector - Returns the given `FLOAT`, unmodified.
 - Int Selector - Returns the given `INTEGER`, unmodified.
 - Prompt Combiner - Combines the given prompts into a single string, separated by commas.
 - Sampler Config - One node for most, if not all, KSampler inputs.
+- Save Image - A Save image node with a separate input for folder and a toggle for saving the metadata.
 - Text Box - Returns the given `STRING`, unmodified.
 ### Conversion Nodes
 - Float to Int - Rounds the given `FLOAT` to the nearest whole number and returns it as an `INTEGER`.
@@ -19,7 +22,7 @@ git clone https://github.com/HavocsCall/comfyui_HavocsCall_Custom_Nodes.git
 - Int to Float - Converts an `INTEGER` to a `FLOAT`.
 - Int to String - Converts an `INTEGER` to a `STRING`.
 ### Prompt Styler Node
-- Prompt Styler - Adds text to your prompts based on json files
+- Prompt Styler - Adds text to your prompts based on json files.
 ### Switch Nodes
 - Clip Switch - Switches between two `CLIPS`.
 - Conditioning Switch - Switches between two `CONDITIONING`.

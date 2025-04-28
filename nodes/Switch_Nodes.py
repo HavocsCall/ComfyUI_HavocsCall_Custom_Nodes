@@ -17,6 +17,7 @@ class HC_Clip_Switch:
     RETURN_NAMES = ("Clip", "Selection",)
     FUNCTION = "clip_switch"
     CATEGORY = "HavocsCall/Switches"
+    DESCRIPTION = "Select a clip based on the selection."
 
     def clip_switch(self, Selection, Clip_1, Clip_2,):
         match Selection:
@@ -43,6 +44,7 @@ class HC_Conditioning_Switch:
     RETURN_NAMES = ("Conditioning", "Selection",)
     FUNCTION = "conditioning_switch"
     CATEGORY = "HavocsCall/Switches"
+    DESCRIPTION = "Select a conditioning based on the selection."
 
     def conditioning_switch(self, Selection, Conditioning_1, Conditioning_2,):
         match Selection:
@@ -70,6 +72,7 @@ class HC_Image_Switch:
     RETURN_NAMES = ("Image", "Selection",)
     FUNCTION = "image_switch"
     CATEGORY = "HavocsCall/Switches"
+    DESCRIPTION = "Select an image based on the selection."
 
     def image_switch(self, Selection, Image_1, Image_2,):
         match Selection:
@@ -97,6 +100,7 @@ class HC_Latent_Switch:
     RETURN_NAMES = ("Latent", "Selection",)
     FUNCTION = "latent_switch"
     CATEGORY = "HavocsCall/Switches"
+    DESCRIPTION = "Select a latent based on the selection."
 
     def latent_switch(self, Selection, Latent_1, Latent_2,):
         match Selection:
@@ -123,6 +127,7 @@ class HC_Model_Switch:
     RETURN_NAMES = ("Model", "Selection",)
     FUNCTION = "model_switch"
     CATEGORY = "HavocsCall/Switches"
+    DESCRIPTION = "Select a model based on the selection."
 
     def model_switch(self, Selection, Model_1, Model_2,):
         match Selection:
@@ -150,6 +155,7 @@ class HC_String_Switch:
     RETURN_NAMES = ("String", "Selection",)
     FUNCTION = "string_switch"
     CATEGORY = "HavocsCall/Switches"
+    DESCRIPTION = "Select a string based on the selection."
 
     def string_switch(self, Selection, String_1, String_2,):
         match Selection:
@@ -177,6 +183,7 @@ class HC_VAE_Switch:
     RETURN_NAMES = ("VAE", "Selection",)
     FUNCTION = "vae_switch"
     CATEGORY = "HavocsCall/Switches"
+    DESCRIPTION = "Select a VAE based on the selection."
 
     def vae_switch(self, Selection, VAE_1, VAE_2,):
         match Selection:

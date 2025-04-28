@@ -1,3 +1,5 @@
+#------------------------------------------------------------------------------------------#
+# For HC_Prompt_Styler
 import json
 from pathlib import Path
 
@@ -25,7 +27,7 @@ class HC_Prompt_Styler:
             with open(file, "r") as f:
                 try:
                     data = json.load(f)
-                    # Add the file name to the name of each style
+                    # Add the file name as a prefix to the name of each style
                     for style_name in data:
                         style_name["Name"] = f"{file.stem} - {style_name['Name']}"
                     json_data.extend(data)
@@ -71,6 +73,7 @@ class HC_Prompt_Styler:
     RETURN_NAMES = ("Styled_Positive_Prompt", "Styled_Negative_Prompt")
     FUNCTION = "prompt_styler"
     CATEGORY = "HavocsCall/Prompt Styler"
+    DESCRIPTION = "Style prompts using a style from the json data."
 
     def prompt_styler(self, Positive_Prompt, Negative_Prompt, Style, Style_Positive, Style_Negative, Log_Prompts):
         # Get the style data from the json data
@@ -87,6 +90,7 @@ class HC_Prompt_Styler:
 
         # Log the prompts if requested
         if Log_Prompts:
+            print(f"-----PROMPT VALUES-----:")
             print(f'Positive Prompt: {Positive_Prompt}')
             print(f'Negative Prompt: {Negative_Prompt}')
             print(f'Styled Positive: {styled_positive}')

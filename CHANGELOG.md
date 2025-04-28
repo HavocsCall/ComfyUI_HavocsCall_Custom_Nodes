@@ -1,3 +1,12 @@
+# 1.2.0
+## Added
+### Basic Nodes
+- Save Image
+---
+# 1.1.1
+### Changes
+Just changed the version ID in order to make the Comfy Registry update
+---
 # 1.1.0
 ## Added
 ### Prompt Styler
@@ -16,13 +25,13 @@
 - Prompt Combiner
 - Sampler Config
 - Text Box
-
 ### Conversion Nodes
 - Float to Int
 - Float to String
 - Int to Float
 - Int to String
-
+### Prompt Stylers
+- Prompt Stylers
 ### Switch Nodes
 - Clip Switch
 - Conditioning Switch

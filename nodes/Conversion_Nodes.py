@@ -13,6 +13,7 @@ class HC_Float_to_Int:
     RETURN_NAMES = ("Integer",)
     FUNCTION = "float_to_int"
     CATEGORY = "HavocsCall/Conversion"
+    DESCRIPTION = "Rounds, then converts a float to an int."
 
     def float_to_int(self, Float,):
         return (round(Float),)
@@ -32,6 +33,7 @@ class HC_Float_to_String:
     RETURN_NAMES = ("String",)
     FUNCTION = "float_to_string"
     CATEGORY = "HavocsCall/Conversion"
+    DESCRIPTION = "Convert a float to a string."
 
     def float_to_string(self, Float,):
         return (str(Float),)
@@ -51,6 +53,7 @@ class HC_Int_to_Float:
     RETURN_NAMES = ("Float",)
     FUNCTION = "int_to_float"
     CATEGORY = "HavocsCall/Conversion"
+    DESCRIPTION = "Convert an int to a float."
 
     def int_to_float(self, Integer,):
         return (float(Integer),)
@@ -70,6 +73,7 @@ class HC_Int_to_String:
     RETURN_NAMES = ("String",)
     FUNCTION = "int_to_string"
     CATEGORY = "HavocsCall/Conversion"
+    DESCRIPTION = "Convert an int to a string."
 
     def int_to_string(self, Integer,):
         return (str(Integer),)
