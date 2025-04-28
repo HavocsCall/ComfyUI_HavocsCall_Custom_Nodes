@@ -63,6 +63,7 @@ class HC_Prompt_Combiner:
             "required": {},
             "optional": {
                 "Style": ("STRING", {"default": "", "multiline": True}),
+                "Face": ("STRING", {"default": "", "multiline": True}),
                 "Subject": ("STRING", {"default": "", "multiline": True}),
                 "Clothing": ("STRING", {"default": "", "multiline": True}),
                 "Action": ("STRING", {"default": "", "multiline": True}),
@@ -71,16 +72,16 @@ class HC_Prompt_Combiner:
             }
         }
 
-    RETURN_TYPES = ("STRING",)
-    RETURN_NAMES = ("Prompt",)
+    RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING", "STRING", "STRING", "STRING", "STRING",)
+    RETURN_NAMES = ("Combined Prompt", "Style", "Face", "Subject", "Clothing", "Action", "Environment", "Extra")
     FUNCTION = "prompt_combiner"
     CATEGORY = "HavocsCall/Basic"
     DESCRIPTION = "Combine prompt parts into a single prompt."
 
-    def prompt_combiner(self, Style="", Subject="", Clothing="", Action="", Environment="", Extra=""):
-        prompt_parts = [part for part in [Style, Subject, Clothing, Action, Environment, Extra] if part]
-        prompt = ", ".join(prompt_parts)
-        return (prompt,)
+    def prompt_combiner(self, Face="", Style="", Subject="", Clothing="", Action="", Environment="", Extra=""):
+        prompt_parts = [part for part in [Face, Style, Subject, Clothing, Action, Environment, Extra] if part]
+        combined_prompt = ", ".join(prompt_parts)
+        return (combined_prompt, Style, Face, Subject, Clothing, Action, Environment, Extra)
 
 #------------------------------------------------------------------------------------------#
 #-----Sampler Config-----
