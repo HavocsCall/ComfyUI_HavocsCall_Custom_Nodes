@@ -92,8 +92,11 @@ class HC_Prompt_Styler:
         if Log_Prompts:
             print(f"-----PROMPT VALUES-----:")
             print(f'Positive Prompt: {Positive_Prompt}')
-            print(f'Negative Prompt: {Negative_Prompt}')
+            print()
             print(f'Styled Positive: {styled_positive}')
+            print()
+            print(f'Negative Prompt: {Negative_Prompt}')
+            print()
             print(f'Styled Negative: {styled_negative}')
             print()
         
