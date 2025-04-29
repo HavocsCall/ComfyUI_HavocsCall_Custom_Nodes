@@ -35,3 +35,5 @@ git clone https://github.com/HavocsCall/comfyui_HavocsCall_Custom_Nodes.git
 - Model Switch - Switches between two `MODELS`.
 - String Switch - Switches between two `STRINGS`.
 - VAE Switch - Switches between two `VAE`.
+## Comfy Registry
+https://registry.comfy.org/nodes/havocscall_custom_nodes
