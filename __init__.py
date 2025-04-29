@@ -1,5 +1,6 @@
 from .nodes.Basic_Nodes import *
 from .nodes.Conversion_Nodes import *
+from .nodes.Math_Nodes import *
 from .nodes.Prompt_Styler_Nodes import *
 from .nodes.Switch_Nodes import *
 
@@ -7,7 +8,7 @@ NODE_CLASS_MAPPINGS = {
     #------------------------------------------------------------------------------------------#
     #-----Basic Nodes-----
     "Float Selector": HC_Float_Selector,
-    "Int Selector": HC_Int_Selector,
+    "Integer Selector": HC_Integer_Selector,
     "Prompt Combiner": HC_Prompt_Combiner,
     "Sampler Config": HC_Sampler_Config,
     "Save Image": HC_Save_Image,
@@ -15,10 +16,16 @@ NODE_CLASS_MAPPINGS = {
 
     #------------------------------------------------------------------------------------------#
     #-----Conversion Nodes-----
-    "Float to Int": HC_Float_to_Int,
+    "Float to Integer": HC_Float_to_Integer,
     "Float to String": HC_Float_to_String,
-    "Int to Float": HC_Int_to_Float,
-    "Int to String": HC_Int_to_String,
+    "Integer to Float": HC_Integer_to_Float,
+    "Integer to String": HC_Integer_to_String,
+    "String to Float": HC_String_to_Float,
+    "String to Integer": HC_String_to_Integer,
+
+    #------------------------------------------------------------------------------------------#
+    #-----Math Nodes-----
+    "Math Operation": HC_Math_Operation,
 
     #------------------------------------------------------------------------------------------#
     #-----Prompt Styler Node-----
@@ -39,7 +46,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     #------------------------------------------------------------------------------------------#
     #-----Basic Nodes-----
     "Float Selector": "Float Selector",
-    "Int Selector": "Int Selector",
+    "Integer Selector": "Integer Selector",
     "Prompt Combiner": "Prompt Combiner",
     "Sampler Config": "Sampler Config",
     "Save Image": "Save Image",
@@ -47,11 +54,17 @@ NODE_DISPLAY_NAME_MAPPINGS = {
 
     #------------------------------------------------------------------------------------------#
     #-----Conversion Nodes-----
-    "Float to Int": "Float to Int",
+    "Float to Integer": "Float to Integer",
     "Float to String": "Float to String",
-    "Int to Float": "Int to Float",
-    "Int to String": "Int to String",
+    "Integer to Float": "Integer to Float",
+    "Integer to String": "Integer to String",
+    "String to Float": "String to Float",
+    "String to Integer": "String to Integer",
 
+    #------------------------------------------------------------------------------------------#
+    #-----Math Nodes-----
+    "Math Operation": "Math Operation",
+    
     #------------------------------------------------------------------------------------------#
     #-----Prompt Styler Node-----
     "Prompt Styler": "Prompt Styler",

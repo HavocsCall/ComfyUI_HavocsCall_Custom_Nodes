@@ -11,16 +11,20 @@ git clone https://github.com/HavocsCall/comfyui_HavocsCall_Custom_Nodes.git
 ## Features
 ### Basic Nodes
 - Float Selector - Returns the given `FLOAT`, unmodified.
-- Int Selector - Returns the given `INTEGER`, unmodified.
+- Integer Selector - Returns the given `INTEGER`, unmodified.
 - Prompt Combiner - Combines the given prompts into a single string, separated by commas.
 - Sampler Config - One node for most, if not all, KSampler inputs.
 - Save Image - A Save image node with a separate input for folder and a toggle for saving the metadata.
 - Text Box - Returns the given `STRING`, unmodified.
 ### Conversion Nodes
-- Float to Int - Rounds the given `FLOAT` to the nearest whole number and returns it as an `INTEGER`.
+- Float to Integer - Converts a `FLOAT` to an `INT`. (Note: This truncates towards zero, it does not round)
 - Float to String - Converts a `FLOAT` to a `STRING`.
-- Int to Float - Converts an `INTEGER` to a `FLOAT`.
-- Int to String - Converts an `INTEGER` to a `STRING`.
+- Integer to Float - Converts an `INTEGER` to a `FLOAT`.
+- Integer to String - Converts an `INTEGER` to a `STRING`.
+- String to Float - Converts a `STRING` to a `FLOAT`. (Returns 0 if an invalid `STRING`)
+- String to Integer - Converts a `STRING` to a `INT`. (Returns 0.0 if an invalid `STRING`)
+### Math Nodes
+- Math Operation - Run math operations on an input number
 ### Prompt Styler Node
 - Prompt Styler - Adds text to your prompts based on json files.
 ### Switch Nodes

@@ -2,7 +2,7 @@
 #-----Clip Switch-----
 class HC_Clip_Switch:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),
@@ -29,7 +29,7 @@ class HC_Clip_Switch:
 #-----Conditioning Switch-----
 class HC_Conditioning_Switch:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),
@@ -57,7 +57,7 @@ class HC_Conditioning_Switch:
 #-----Image Switch-----
 class HC_Image_Switch:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),
@@ -85,7 +85,7 @@ class HC_Image_Switch:
 #-----Latent Switch-----
 class HC_Latent_Switch:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),
@@ -113,7 +113,7 @@ class HC_Latent_Switch:
 #-----Model Switch-----
 class HC_Model_Switch:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),
@@ -140,7 +140,7 @@ class HC_Model_Switch:
 #-----String Switch-----
 class HC_String_Switch:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),
@@ -168,7 +168,7 @@ class HC_String_Switch:
 #-----VAE Switch-----
 class HC_VAE_Switch:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "Selection": ("INT", {"default": 1, "min": 1, "max": 2}),

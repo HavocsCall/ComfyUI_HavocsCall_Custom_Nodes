@@ -1,35 +1,61 @@
-# 1.2.0
+# 3.0.0
+## Added
+### Conversion Nodes
+- String to Float
+- String to Integer
+### Math Nodes
+Added Math Nodes
+## Changes
+### Multiple Nodes
+Changed "int" to "Integer" throughout the code just because I'm insane
+Some more code cleanup as I'm learning new things
+---
+# 2.2.0
+## Changes
+### Basic Nodes
+Added a Face section to the Prompt combiner
+Added outputs for each section of the Prompt Combiner
+---
+# 2.1.0
+## Changes
+### Basic Nodes
+Added a few blank lines to improve readability when logging prompts from prompt_styler
+---
+# 2.0.0
 ## Added
 ### Basic Nodes
-- Save Image
+- Save Image Node
+## Changes
+Some Cleanup and commenting for clarity
+Super important correction on the publish.yml, definitely not hiding my misspelling of "correction"
 ---
 # 1.1.1
-### Changes
+## Changes
 Just changed the version ID in order to make the Comfy Registry update
 ---
 # 1.1.0
 ## Added
-### Prompt Styler
+### Basic Nodes
 - Remade the prompt styler node from scratch
 ---
 # 1.0.1
 ## Removed
 ### Prompt Stylers
-- This was copied this code from https://github.com/TripleHeadedMonkey/ComfyUI_MileHighStyler and https://github.com/twri/sdxl_prompt_styler, thank you very much to them for the inspiration
+- This was copied this code from https://github.com/TripleHeadedMonkey/ComfyUI_MileHighStyler and https://github.com/twri/sdxl_prompt_styler, thank you very much to them for the inspiration.
 ---
 # 1.0.0
 ## Added
 ### Basic Nodes
 - Float Selector
-- Int Selector
+- Integer Selector
 - Prompt Combiner
 - Sampler Config
 - Text Box
 ### Conversion Nodes
-- Float to Int
+- Float to Integer
 - Float to String
-- Int to Float
-- Int to String
+- Integer to Float
+- Integer to String
 ### Prompt Stylers
 - Prompt Stylers
 ### Switch Nodes

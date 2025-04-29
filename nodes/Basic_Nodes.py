@@ -18,7 +18,7 @@ import time
 #-----Float Selector-----
 class HC_Float_Selector:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "Float": ("FLOAT", {"default": 0, "min": 0.0, "max": 100.0})
@@ -35,24 +35,24 @@ class HC_Float_Selector:
         return (Float,)
 
 #------------------------------------------------------------------------------------------#
-#-----Int Selector-----
-class HC_Int_Selector:
+#-----Integer Selector-----
+class HC_Integer_Selector:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
-                "Int": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff})
+                "Integer": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff})
             }
         }
 
     RETURN_TYPES = ("INT",)
-    RETURN_NAMES = ("Int",)
-    FUNCTION = "int_selector"
+    RETURN_NAMES = ("Integer",)
+    FUNCTION = "integer_selector"
     CATEGORY = "HavocsCall/Basic"
-    DESCRIPTION = "Select an int value."
+    DESCRIPTION = "Select an integer value."
 
-    def int_selector(self, Int,):
-        return (Int,)
+    def integer_selector(self, Integer,):
+        return (Integer,)
 
 #------------------------------------------------------------------------------------------#
 #-----Prompt Combiner-----
@@ -109,7 +109,7 @@ class HC_Sampler_Config:
     ]
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
@@ -198,7 +198,7 @@ class HC_Save_Image:
         return input
     
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "Images": ("IMAGE", {"forceInput": True}),
@@ -281,7 +281,7 @@ class HC_Save_Image:
 #-----Text Box-----
 class HC_Text_Box:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "Text": ("STRING", {"default": "", "multiline": True})
