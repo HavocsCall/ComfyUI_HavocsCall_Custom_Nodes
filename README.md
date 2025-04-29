@@ -26,7 +26,7 @@ git clone https://github.com/HavocsCall/comfyui_HavocsCall_Custom_Nodes.git
 ### Math Nodes
 - Math Operation - Run math operations on an input number
 ### Prompt Styler Node
-- Prompt Styler - Adds text to your prompts based on json files.
+- Prompt Styler - Adds text to your prompts based on json files. - See [Prompt Styler Nodes](https://github.com/HavocsCall/ComfyUI_HavocsCall_Custom_Nodes/wiki/Prompt-Styler-Nodes) for more information.
 ### Switch Nodes
 - Clip Switch - Switches between two `CLIPS`.
 - Conditioning Switch - Switches between two `CONDITIONING`.
@@ -35,3 +35,10 @@ git clone https://github.com/HavocsCall/comfyui_HavocsCall_Custom_Nodes.git
 - Model Switch - Switches between two `MODELS`.
 - String Switch - Switches between two `STRINGS`.
 - VAE Switch - Switches between two `VAE`.
+## Comfy Registry
+https://registry.comfy.org/nodes/havocscall_custom_nodes
+## Credits
+Thank you very much to:
+[Comfyroll Studio](https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes) - for a lot of inspiration around multiple nodes
+[ComfyUI_MileHighStyler](https://github.com/TripleHeadedMonkey/ComfyUI_MileHighStyler) - for inspiration with the Prompt Styler Node
+[SDXL Prompt Styler](https://github.com/twri/sdxl_prompt_styler) - for inspiration with the Prompt Styler Node

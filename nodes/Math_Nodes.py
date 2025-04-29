@@ -6,6 +6,7 @@ class HC_Math_Operation:
         "Subtract",
         "Multiply",
         "Divide",
+        "round"
     ]
 
     class AnyType(str):
@@ -18,9 +19,9 @@ class HC_Math_Operation:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "Number_Input": (HC_Math_Operation.any, {"forceInput": True}),
-                "Number": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
-                "Operation": (HC_Math_Operation.operations, {"default": "Add"})
+                "Number": (HC_Math_Operation.any, {"forceInput": True}),
+                "Operation": (HC_Math_Operation.operations, {"default": "Add"}),
+                "Constant": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff})
             },
         }
     
@@ -30,19 +31,21 @@ class HC_Math_Operation:
     CATEGORY = "HavocsCall/Math"
     DESCRIPTION = "Runs a math operation on the input number"
 
-    def math_operation(self, Number_Input, Number, Operation):
+    def math_operation(self, Number, Constant, Operation):
         match Operation:
             case "Add":
-                result = Number_Input + Number
+                result = Number + Constant
             case "Subtract":
-                result = Number_Input - Number
+                result = Number - Constant
             case "Multiply":
-                result = Number_Input * Number
+                result = Number * Constant
             case "Divide":
                 if Number == 0:
                     result = 0
                 else:
-                    result = Number_Input / Number
+                    result = Number / Constant
+            case "round":
+                result = round(Number)
         result_float = float(result)
         result_integer = int(result)
         return (result_float, result_integer,)

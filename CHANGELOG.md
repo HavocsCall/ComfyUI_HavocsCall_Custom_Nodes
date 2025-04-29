@@ -1,3 +1,9 @@
+# 3.1.0
+## Changes
+### Math Node
+- Added "round" as an operation to the Math Operation Node
+- Changed the order of the Math node inputs to make more sense in my head
+- Changed "Number" to "Constant" in Math Node
 # 3.0.0
 ## Added
 ### Conversion Nodes
@@ -7,31 +13,31 @@
 Added Math Nodes
 ## Changes
 ### Multiple Nodes
-Changed "int" to "Integer" throughout the code just because I'm insane
-Some more code cleanup as I'm learning new things
+- Changed "int" to "integer" throughout the code just because I'm insane
+- Some more code cleanup as I'm learning new things
 ---
 # 2.2.0
 ## Changes
 ### Basic Nodes
-Added a Face section to the Prompt combiner
-Added outputs for each section of the Prompt Combiner
+- Added a Face section to the Prompt combiner
+- Added outputs for each section of the Prompt Combiner
 ---
 # 2.1.0
 ## Changes
 ### Basic Nodes
-Added a few blank lines to improve readability when logging prompts from prompt_styler
+- Added a few blank lines to improve readability when logging prompts from prompt_styler
 ---
 # 2.0.0
 ## Added
 ### Basic Nodes
 - Save Image Node
 ## Changes
-Some Cleanup and commenting for clarity
-Super important correction on the publish.yml, definitely not hiding my misspelling of "correction"
+- Some Cleanup and commenting for clarity
+- Super important correction on the publish.yml, definitely not hiding my misspelling of "correction"
 ---
 # 1.1.1
 ## Changes
-Just changed the version ID in order to make the Comfy Registry update
+- Just changed the version ID in order to make the Comfy Registry update
 ---
 # 1.1.0
 ## Added
