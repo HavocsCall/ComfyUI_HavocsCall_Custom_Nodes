@@ -1,3 +1,9 @@
+# 3.1.1
+## Changes
+### Basic Nodes
+- Fixed the order of the Prompt combinder's combining
+### Math Nodes
+- Capitalized "Round"
 # 3.1.0
 ## Changes
 ### Math Node

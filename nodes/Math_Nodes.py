@@ -6,7 +6,7 @@ class HC_Math_Operation:
         "Subtract",
         "Multiply",
         "Divide",
-        "round"
+        "Round"
     ]
 
     class AnyType(str):
@@ -44,7 +44,7 @@ class HC_Math_Operation:
                     result = 0
                 else:
                     result = Number / Constant
-            case "round":
+            case "Round":
                 result = round(Number)
         result_float = float(result)
         result_integer = int(result)

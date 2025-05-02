@@ -79,7 +79,7 @@ class HC_Prompt_Combiner:
     DESCRIPTION = "Combine prompt parts into a single prompt."
 
     def prompt_combiner(self, Face="", Style="", Subject="", Clothing="", Action="", Environment="", Extra=""):
-        prompt_parts = [part for part in [Face, Style, Subject, Clothing, Action, Environment, Extra] if part]
+        prompt_parts = [part for part in [Style, Face, Subject, Clothing, Action, Environment, Extra] if part]
         combined_prompt = ", ".join(prompt_parts)
         return (combined_prompt, Style, Face, Subject, Clothing, Action, Environment, Extra)
 
