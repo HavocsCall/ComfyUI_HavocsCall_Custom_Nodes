@@ -37,8 +37,8 @@ git clone https://github.com/HavocsCall/comfyui_HavocsCall_Custom_Nodes.git
 - VAE Switch - Switches between two `VAE`.
 ## Comfy Registry
 https://registry.comfy.org/nodes/havocscall_custom_nodes
-## Credits
+## Acknowledgements
 Thank you very much to:
-[Comfyroll Studio](https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes) - for a lot of inspiration around multiple nodes
-[ComfyUI_MileHighStyler](https://github.com/TripleHeadedMonkey/ComfyUI_MileHighStyler) - for inspiration with the Prompt Styler Node
-[SDXL Prompt Styler](https://github.com/twri/sdxl_prompt_styler) - for inspiration with the Prompt Styler Node
+- [Comfyroll Studio](https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes) for a lot of inspiration around multiple nodes.
+- [ComfyUI_MileHighStyler](https://github.com/TripleHeadedMonkey/ComfyUI_MileHighStyler) for inspiration with the Prompt Styler Node.
+- [SDXL Prompt Styler](https://github.com/twri/sdxl_prompt_styler) for inspiration with the Prompt Styler Node.

@@ -25,6 +25,7 @@ class HC_Clip_Switch:
                 return (Clip_1, Selection,)
             case 2:
                 return (Clip_2, Selection,)
+
 #------------------------------------------------------------------------------------------#
 #-----Conditioning Switch-----
 class HC_Conditioning_Switch:

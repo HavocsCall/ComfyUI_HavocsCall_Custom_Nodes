@@ -90,7 +90,7 @@ class HC_Prompt_Styler:
 
         # Log the prompts if requested
         if Log_Prompts:
-            print(f"-----PROMPT VALUES-----:")
+            print(f"-----PROMPT VALUES-----")
             print(f'Positive Prompt: {Positive_Prompt}')
             print()
             print(f'Styled Positive: {styled_positive}')
