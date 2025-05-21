@@ -1,4 +1,5 @@
 from .nodes.Basic_Nodes import *
+from .nodes.Combination_Nodes import *
 from .nodes.Conversion_Nodes import *
 from .nodes.Math_Nodes import *
 from .nodes.Prompt_Styler_Nodes import *
@@ -13,6 +14,10 @@ NODE_CLASS_MAPPINGS = {
     "Sampler Config": HC_Sampler_Config,
     "Save Image": HC_Save_Image,
     "Text Box": HC_Text_Box,
+
+    #------------------------------------------------------------------------------------------#
+    #-----Combinination Nodes-----
+    "Combine String": HC_Combine_String,
 
     #------------------------------------------------------------------------------------------#
     #-----Conversion Nodes-----
@@ -51,6 +56,10 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Sampler Config": "Sampler Config",
     "Save Image": "Save Image",
     "Text Box": "Text Box",
+
+    #------------------------------------------------------------------------------------------#
+    #-----Combinination Nodes-----
+    "Combine String": "Combine String",
 
     #------------------------------------------------------------------------------------------#
     #-----Conversion Nodes-----

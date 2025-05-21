@@ -246,7 +246,7 @@ class HC_Save_Image:
         results = list()
 
         # Prepare images
-        for (batch_number, image) in enumerate(Images):
+        for image in Images:
             i = 255. * image.cpu().numpy()
             img = Image.fromarray(np.clip(i, 0, 255).astype(np.uint8))
 

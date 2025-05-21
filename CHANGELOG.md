@@ -1,3 +1,7 @@
+# 3.2.0
+## Added
+### Combination Nodes
+- Added a Combine String Node
 # 3.1.2
 ## Changes
 ### README
