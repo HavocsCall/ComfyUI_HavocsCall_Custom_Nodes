@@ -1,3 +1,7 @@
+# 3.3.1
+I forgot to include the removal of the Variable names in the Save Image node in 3.3.0 changelog, so updating it now.
+***
+
 # 3.3.0
 ## Added
 ### Basic Nodes
@@ -12,6 +16,9 @@
 ### Math Nodes
 - Added the Constant as an output
 - Slightly refactored the Math node
+## Removed
+### Basic Nodes
+- Temporarily removing the ability to put variables in the names of the Save Image node.
 ***
 
 # 3.2.0
