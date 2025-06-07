@@ -1,15 +1,21 @@
 #------------------------------------------------------------------------------------------#
-# For HC_Sampler_Config
-import comfy.samplers
+#-----Import Libraries-----
+# For HC_Load_Image
 import folder_paths
+import hashlib
+from PIL import Image, ImageOps, ImageSequence
 import torch
 
-#------------------------------------------------------------------------------------------#
+# For HC_Sampler_Config
+import comfy.samplers
+#import folder_paths
+#import torch
+
 # For HC_Save_Image
 import json
 import numpy as np
 from pathlib import Path
-from PIL import Image
+#from PIL import Image
 from PIL.PngImagePlugin import PngInfo
 import time
 #import torch
@@ -31,7 +37,7 @@ class HC_Float_Selector:
     CATEGORY = "HavocsCall/Basic"
     DESCRIPTION = "Select a float value."
 
-    def float_selector(self, Float,):
+    def float_selector(self, Float):
         return (Float,)
 
 #------------------------------------------------------------------------------------------#
@@ -51,8 +57,87 @@ class HC_Integer_Selector:
     CATEGORY = "HavocsCall/Basic"
     DESCRIPTION = "Select an integer value."
 
-    def integer_selector(self, Integer,):
+    def integer_selector(self, Integer):
         return (Integer,)
+
+
+#------------------------------------------------------------------------------------------#
+#-----Load Image-----
+class HC_Load_Image:
+    @classmethod
+    def INPUT_TYPES(cls):
+        #Get the input directory
+        input_dir = Path(folder_paths.get_input_directory())
+
+        # Get the list of image files in the input directory
+        image_extensions = ('.png', '.jpg', '.jpeg', '.webp', '.gif', '.bmp', '.tiff', '.tif')
+        files = [f.name for f in input_dir.iterdir() if f.is_file() and f.suffix.lower() in image_extensions]
+
+        return {
+             "required": {
+                  "image": (sorted(files), {"image_upload": True})
+             }
+        }
+    
+    RETURN_TYPES = ("IMAGE", "MASK", "INT", "INT",)
+    RETURN_NAMES = ("Image", "Mask", "Width", "Height",)
+    FUNCTION = "load_image"
+    CATEGORY = "HavocsCall/Basic"
+    DESCRIPTION = "Load an image from the input directory."
+
+    def load_image(self, image):
+        image_path = folder_paths.get_annotated_filepath(image)
+        img = Image.open(image_path)
+
+        output_images = []
+        output_masks = []
+
+        width, height = img.size
+
+        for i in ImageSequence.Iterator(img):
+            i = ImageOps.exif_transpose(i)
+            
+            if i.mode == 'I':
+                i = i.point(lambda i: i * (1 / 255))
+            
+            image = i.convert("RGB")
+            image = np.array(image).astype(np.float32) / 255.0
+            image = torch.from_numpy(image)[None,]
+            
+            if 'A' in i.getbands():
+                mask = np.array(i.getchannel('A')).astype(np.float32) / 255.0
+                mask = 1. - torch.from_numpy(mask)
+            elif i.mode == 'P' and 'transparency' in i.info:
+                mask = np.array(i.convert('RGBA').getchannel('A')).astype(np.float32) / 255.0
+                mask = 1. - torch.from_numpy(mask)
+            else:
+                mask = torch.zeros((64,64), dtype=torch.float32, device="cpu")
+            
+            output_images.append(image)
+            output_masks.append(mask.unsqueeze(0))
+
+        if len(output_images) > 1:
+            output_image = torch.cat(output_images, dim=0)
+            output_mask = torch.cat(output_masks, dim=0)
+        else:
+            output_image = output_images[0]
+            output_mask = output_masks[0]
+
+        return (output_image, output_mask, width, height,)
+
+    @classmethod
+    def IS_CHANGED(self, Images):
+        image_path = folder_paths.get_annotated_filepath(Images)
+        m = hashlib.sha256()
+        with open(image_path, 'rb') as f:
+            m.update(f.read())
+        return m.digest().hex()
+
+    @classmethod
+    def VALIDATE_INPUTS(self, image):
+        if not folder_paths.exists_annotated_filepath(image):
+            return "Invalid image file: {}".format(image)
+        return True
 
 #------------------------------------------------------------------------------------------#
 #-----Prompt Combiner-----
@@ -73,7 +158,7 @@ class HC_Prompt_Combiner:
         }
 
     RETURN_TYPES = ("STRING", "STRING", "STRING", "STRING", "STRING", "STRING", "STRING", "STRING",)
-    RETURN_NAMES = ("Combined Prompt", "Style", "Face", "Subject", "Clothing", "Action", "Environment", "Extra")
+    RETURN_NAMES = ("Combined Prompt", "Style", "Face", "Subject", "Clothing", "Action", "Environment", "Extra",)
     FUNCTION = "prompt_combiner"
     CATEGORY = "HavocsCall/Basic"
     DESCRIPTION = "Combine prompt parts into a single prompt."
@@ -81,7 +166,7 @@ class HC_Prompt_Combiner:
     def prompt_combiner(self, Face="", Style="", Subject="", Clothing="", Action="", Environment="", Extra=""):
         prompt_parts = [part for part in [Style, Face, Subject, Clothing, Action, Environment, Extra] if part]
         combined_prompt = ", ".join(prompt_parts)
-        return (combined_prompt, Style, Face, Subject, Clothing, Action, Environment, Extra)
+        return (combined_prompt, Style, Face, Subject, Clothing, Action, Environment, Extra,)
 
 #------------------------------------------------------------------------------------------#
 #-----Sampler Config-----
@@ -131,7 +216,7 @@ class HC_Sampler_Config:
     CATEGORY = "HavocsCall/Basic"
     DESCRIPTION = "Configure sampler settings."
 
-    def sampler_config(self, seed, Steps, CFG, Sampler, Scheduler, Denoise, Aspect_Ratio, Width, Height, Batch_Size,):
+    def sampler_config(self, seed, Steps, CFG, Sampler, Scheduler, Denoise, Aspect_Ratio, Width, Height, Batch_Size):
         match Aspect_Ratio:
             case "Custom":
                 Width, Height = Width, Height
@@ -179,24 +264,6 @@ class HC_Sampler_Config:
 #------------------------------------------------------------------------------------------#
 #-----Save Image-----
 class HC_Save_Image:
-    def replace_variables(input, image_width, image_height) -> str:
-        now = time.localtime()
-        replacements = {
-            "%day%": str(now.tm_mday).zfill(2),
-            "%height%": str(image_height),
-            "%hour%": str(now.tm_hour).zfill(2),
-            "%minute%": str(now.tm_min).zfill(2),
-            "%month%": str(now.tm_mon).zfill(2),
-            "%second%": str(now.tm_sec).zfill(2),
-            "%width%": str(image_width),
-            "%year%": str(now.tm_year)
-        }
-
-        for replace_variable, value in replacements.items():
-            input = input.replace(replace_variable, value)
-
-        return input
-    
     @classmethod
     def INPUT_TYPES(cls):
         return {
@@ -209,7 +276,7 @@ class HC_Save_Image:
             "hidden": {
                 "prompt": "PROMPT",
                 "extra_pnginfo": "EXTRA_PNGINFO"
-            }, 
+            }
         }
 
     RETURN_TYPES = ()
@@ -218,20 +285,17 @@ class HC_Save_Image:
     CATEGORY = "HavocsCall/Basic"
     DESCRIPTION = "Saves the input images to your ComfyUI output directory."
 
-    def save_images(self, Images, Folder_Name, Save_Metadata, File_Name_Prefix = "ComfyUI", prompt = None, extra_pnginfo = None):
+    def save_images(self, Images, Folder_Name, Save_Metadata, File_Name_Prefix, prompt = None, extra_pnginfo = None):
         output_dir = Path(folder_paths.get_output_directory())
         image_height = Images[0].shape[0]
         image_width = Images[0].shape[1]
-
-        # Replace variables in the folder name
-        Folder_Name = HC_Save_Image.replace_variables(Folder_Name, image_width, image_height) if "%" in Folder_Name else Folder_Name
 
         # Create folder if it does not exist
         full_path = output_dir / Folder_Name if Folder_Name else output_dir
         full_path.mkdir(parents=True, exist_ok=True)
         
         # Replace variables in the file name prefix
-        File_Name_Prefix = HC_Save_Image.replace_variables(File_Name_Prefix, image_width, image_height) if "%" in File_Name_Prefix else File_Name_Prefix
+        File_Name_Prefix = self.replace_variables(File_Name_Prefix, image_width, image_height) if "%" in File_Name_Prefix else File_Name_Prefix
 
         # Determine counter
         try:
@@ -294,5 +358,5 @@ class HC_Text_Box:
     CATEGORY = "HavocsCall/Basic"
     DESCRIPTION = "Create a string value"
 
-    def text_box(self, Text,):
+    def text_box(self, Text):
         return (Text,)

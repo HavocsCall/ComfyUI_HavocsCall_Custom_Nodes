@@ -1,6 +1,7 @@
 from .nodes.Basic_Nodes import *
 from .nodes.Combination_Nodes import *
 from .nodes.Conversion_Nodes import *
+from .nodes.Logic_Nodes import *
 from .nodes.Math_Nodes import *
 from .nodes.Prompt_Styler_Nodes import *
 from .nodes.Switch_Nodes import *
@@ -10,6 +11,7 @@ NODE_CLASS_MAPPINGS = {
     #-----Basic Nodes-----
     "Float Selector": HC_Float_Selector,
     "Integer Selector": HC_Integer_Selector,
+    "Load Image": HC_Load_Image,
     "Prompt Combiner": HC_Prompt_Combiner,
     "Sampler Config": HC_Sampler_Config,
     "Save Image": HC_Save_Image,
@@ -27,6 +29,10 @@ NODE_CLASS_MAPPINGS = {
     "Integer to String": HC_Integer_to_String,
     "String to Float": HC_String_to_Float,
     "String to Integer": HC_String_to_Integer,
+    
+    #------------------------------------------------------------------------------------------#
+    #-----Logic Nodes-----
+    "Logic Compare": HC_Logic_Compare,
 
     #------------------------------------------------------------------------------------------#
     #-----Math Nodes-----
@@ -52,6 +58,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     #-----Basic Nodes-----
     "Float Selector": "Float Selector",
     "Integer Selector": "Integer Selector",
+    "Load Image": "Load Image",
     "Prompt Combiner": "Prompt Combiner",
     "Sampler Config": "Sampler Config",
     "Save Image": "Save Image",
@@ -69,6 +76,10 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "Integer to String": "Integer to String",
     "String to Float": "String to Float",
     "String to Integer": "String to Integer",
+
+    #------------------------------------------------------------------------------------------#
+    #-----Logic Nodes-----
+    "Logic Compare": "Logic Compare",
 
     #------------------------------------------------------------------------------------------#
     #-----Math Nodes-----

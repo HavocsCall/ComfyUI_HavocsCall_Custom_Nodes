@@ -1,4 +1,5 @@
 #------------------------------------------------------------------------------------------#
+#-----Import Libraries-----
 # For HC_Prompt_Styler
 import json
 from pathlib import Path
@@ -51,11 +52,6 @@ class HC_Prompt_Styler:
     # Alphabetize style names but keep "None" at the top
     style_names = sorted(style_names, key=lambda name: (name != "None", name))
 
-    # Function to style the prompt
-    def style_prompt(self, prompt, style):
-        styled_prompt = style.replace("{prompt}", prompt)
-        return styled_prompt
-
     @classmethod
     def INPUT_TYPES(cls):
         return {
@@ -63,14 +59,14 @@ class HC_Prompt_Styler:
                 "Positive_Prompt": ("STRING", {"forceInput": True}),
                 "Negative_Prompt": ("STRING", {"forceInput": True}),
                 "Style": (HC_Prompt_Styler.style_names,),
-                "Style_Positive": ("BOOLEAN", {"default": True, "label_on": "Yes", "label_off": "No", "tooltip": "Apply the style to the positive prompt"}),
-                "Style_Negative": ("BOOLEAN", {"default": True, "label_on": "Yes", "label_off": "No", "tooltip": "Apply the style to the negative prompt"}),
-                "Log_Prompts": ("BOOLEAN", {"default": False, "label_on": "Yes", "label_off": "No", "tooltip": "Log the prompt (before and after)"})
+                "Style_Positive": ("BOOLEAN", {"default": True, "label_on": "Yes", "label_off": "No"}),
+                "Style_Negative": ("BOOLEAN", {"default": True, "label_on": "Yes", "label_off": "No"}),
+                "Log_Prompts": ("BOOLEAN", {"default": False, "label_on": "Yes", "label_off": "No"})
             }
         }
     
-    RETURN_TYPES = ("STRING", "STRING")
-    RETURN_NAMES = ("Styled_Positive_Prompt", "Styled_Negative_Prompt")
+    RETURN_TYPES = ("STRING", "STRING",)
+    RETURN_NAMES = ("Styled_Positive_Prompt", "Styled_Negative_Prompt",)
     FUNCTION = "prompt_styler"
     CATEGORY = "HavocsCall/Prompt Styler"
     DESCRIPTION = "Style prompts using a style from the json data."
@@ -100,4 +96,9 @@ class HC_Prompt_Styler:
             print(f'Styled Negative: {styled_negative}')
             print()
         
-        return (styled_positive, styled_negative)
+        return (styled_positive, styled_negative,)
+    
+    # Function to style the prompt
+    def style_prompt(self, prompt, style):
+        styled_prompt = style.replace("{prompt}", prompt)
+        return styled_prompt

@@ -1,32 +1,32 @@
 #------------------------------------------------------------------------------------------#
 #-----Math Function-----
 class HC_Math_Operation:
-    operations = [
-        "Add",
-        "Subtract",
-        "Multiply",
-        "Divide",
-        "Round"
-    ]
-
-    class AnyType(str):
-        def __ne__(self, __value: object) -> bool:
-            return False
-
-    any = AnyType("*")
-
     @classmethod
     def INPUT_TYPES(cls):
+        operations = [
+            "Add",
+            "Subtract",
+            "Multiply",
+            "Divide",
+            "Round"
+            ]
+
+        class AnyType(str):
+            def __ne__(self, __value: object) -> bool:
+                return False
+
+        any = AnyType("*")
+
         return {
             "required": {
-                "Number": (HC_Math_Operation.any, {"forceInput": True}),
-                "Operation": (HC_Math_Operation.operations, {"default": "Add"}),
+                "Number": (any, {"forceInput": True}),
+                "Operation": (operations, ),
                 "Constant": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff})
             },
         }
     
-    RETURN_TYPES = ("FLOAT", "INT",)
-    RETURN_NAMES = ("Result Float", "Result Integer",)
+    RETURN_TYPES = ("FLOAT", "INT", "INT",)
+    RETURN_NAMES = ("Result Float", "Result Integer", "Constant",)
     FUNCTION = "math_operation"
     CATEGORY = "HavocsCall/Math"
     DESCRIPTION = "Runs a math operation on the input number"
@@ -46,6 +46,8 @@ class HC_Math_Operation:
                     result = Number / Constant
             case "Round":
                 result = round(Number)
+        
         result_float = float(result)
         result_integer = int(result)
-        return (result_float, result_integer,)
+        
+        return (result_float, result_integer, Constant,)

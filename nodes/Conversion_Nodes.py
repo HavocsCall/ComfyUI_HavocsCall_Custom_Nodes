@@ -16,7 +16,8 @@ class HC_Float_to_Integer:
     DESCRIPTION = "Rounds, then converts a float to an integer."
 
     def float_to_integer(self, Float,):
-        return (int(Float)),
+        result = int(Float)
+        return (result,)
 
 #------------------------------------------------------------------------------------------#
 #-----Float to String-----
@@ -36,7 +37,8 @@ class HC_Float_to_String:
     DESCRIPTION = "Convert a float to a string."
 
     def float_to_string(self, Float,):
-        return (str(Float),)
+        result = str(Float)
+        return (result,)
 
 #------------------------------------------------------------------------------------------#
 #-----Integer to Float-----
@@ -56,7 +58,8 @@ class HC_Integer_to_Float:
     DESCRIPTION = "Convert an integer to a float."
 
     def integer_to_float(self, Integer,):
-        return (float(Integer),)
+        result = float(Integer)
+        return (result,)
 
 #------------------------------------------------------------------------------------------#
 #-----Integer to String-----
@@ -76,7 +79,8 @@ class HC_Integer_to_String:
     DESCRIPTION = "Convert an integer to a string."
 
     def integer_to_string(self, Integer,):
-        return (str(Integer),)
+        result = str(Integer)
+        return (result,)
 
 #------------------------------------------------------------------------------------------#
 #-----String to Float-----
@@ -97,11 +101,11 @@ class HC_String_to_Float:
 
     def string_to_float(self, String,):
         try:
-            String = float(String)
+            result = float(String)
         except ValueError:
             print("String to Float conversion failed. Returning 0.")
-            String = 0.0
-        return (float(String),)
+            result = 0.0
+        return (result,)
 
 #------------------------------------------------------------------------------------------#
 #-----String to Integer-----
@@ -122,8 +126,8 @@ class HC_String_to_Integer:
 
     def string_to_int(self, String,):
         try:
-            String = int(String)
+            result = int(String)
         except ValueError:
             print("String to Integer conversion failed. Returning 0.")
-            String = 0
-        return (int(String),)
+            result = 0
+        return (result,)
