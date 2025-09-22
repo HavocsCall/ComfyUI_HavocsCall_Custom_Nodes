@@ -1,6 +1,6 @@
 #------------------------------------------------------------------------------------------#
 #-----Import Libraries-----
-# For HC_Prompt_Styler
+# --- For HC_Prompt_Styler ---
 import json
 from pathlib import Path
 

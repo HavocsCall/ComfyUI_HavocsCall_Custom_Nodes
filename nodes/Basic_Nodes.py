@@ -1,17 +1,17 @@
 #------------------------------------------------------------------------------------------#
 #-----Import Libraries-----
-# For HC_Load_Image
+# --- For HC_Load_Image ---
 import folder_paths
 import hashlib
 from PIL import Image, ImageOps, ImageSequence
 import torch
 
-# For HC_Sampler_Config
+# --- For HC_Sampler_Config ---
 import comfy.samplers
 #import folder_paths
 #import torch
 
-# For HC_Save_Image
+# --- For HC_Save_Image ---
 import json
 import numpy as np
 from pathlib import Path
@@ -59,7 +59,6 @@ class HC_Integer_Selector:
 
     def integer_selector(self, Integer):
         return (Integer,)
-
 
 #------------------------------------------------------------------------------------------#
 #-----Load Image-----
@@ -173,24 +172,23 @@ class HC_Prompt_Combiner:
 class HC_Sampler_Config:
     Aspect_Ratios = [
         "Custom",
-        "SD1.5 - 1:1 square 512x512",
-        "SD1.5 - 1:1 square 1024x1024",
-        "SD1.5 - 2:3 portrait 512x768",
-        "SD1.5 - 3:4 portrait 512x682",
-        "SD1.5 - 3:2 landscape 768x512",
-        "SD1.5 - 4:3 landscape 682x512",
-        "SD1.5 - 16:9 cinema 910x512",
-        "SD1.5 - 1.85:1 cinema 952x512",
-        "SD1.5 - 2:1 cinema 1024x512",
-        "SDXL - 1:1 Square 1024 x 1024",
-        "SDXL - 3:4 Portrait 896 x 1152",
-        "SDXL - 5:8 Portrait 832 x 1216",
-        "SDXL - 9:16 Portrait 768 x 1344",
-        "SDXL - 9:21 Portrait 640 x 1536",
-        "SDXL - 4:3 Landscape 1152 x 896",
-        "SDXL - 3:2 Landscape 1216 x 832",
-        "SDXL - 16:9 Landscape 1344 x 768",
-        "SDXL - 21:9 Landscape 1536 x 640"
+        "1:1 - 512 x 512",
+        "2:3 - 512 x 768",
+        "3:4 - 512 x 682",
+        "3:2 - 768 x 512",
+        "4:3 - 682 x 512",
+        "16:9 - 910 x 512",
+        "1.85:1 - 952 x 512",
+        "2:1 - 1024 x 512",
+        "1:1 - 1024 x 1024",
+        "3:4 - 896 x 1152",
+        "5:8 - 832 x 1216",
+        "9:16 - 768 x 1344",
+        "9:21 - 640 x 1536",
+        "4:3 - 1152 x 896",
+        "3:2 - 1216 x 832",
+        "16:9 - 1344 x 768",
+        "21:9 - 1536 x 640"
     ]
 
     @classmethod
@@ -220,41 +218,41 @@ class HC_Sampler_Config:
         match Aspect_Ratio:
             case "Custom":
                 Width, Height = Width, Height
-            case "SD1.5 - 1:1 square 512x512":
+            case "1:1 - 512 x 512":
                 Width, Height = 512, 512
-            case "SD1.5 - 1:1 square 1024x1024":
+            case "1:1 - 1024 x 1024":
                 Width, Height = 1024, 1024
-            case "SD1.5 - 2:3 portrait 512x768":
+            case "2:3 - 512 x 768":
                 Width, Height = 512, 768
-            case "SD1.5 - 3:4 portrait 512x682":
+            case "3:4 - 512 x 682":
                 Width, Height = 512, 682
-            case "SD1.5 - 3:2 landscape 768x512":
+            case "3:2 - 768 x 512":
                 Width, Height = 768, 512
-            case "SD1.5 - 4:3 landscape 682x512":
+            case "4:3 - 682 x 512":
                 Width, Height = 682, 512
-            case "SD1.5 - 16:9 cinema 910x512":
+            case "16:9 - 910 x 512":
                 Width, Height = 910, 512
-            case "SD1.5 - 1.85:1 cinema 952x512":
+            case "1.85:1 - 952 x 512":
                 Width, Height = 952, 512
-            case "SD1.5 - 2:1 cinema 1024x512":
+            case "2:1 - 1024 x 512":
                 Width, Height = 1024, 512
-            case "SDXL - 1:1 Square 1024 x 1024":
+            case "1:1 - 1024 x 1024":
                 Width, Height = 1024, 1024
-            case "SDXL - 3:4 Portrait 896 x 1152":
+            case "3:4 - 896 x 1152":
                 Width, Height = 896, 1152
-            case "SDXL - 5:8 Portrait 832 x 1216":
+            case "5:8 - 832 x 1216":
                 Width, Height = 832, 1216
-            case "SDXL - 9:16 Portrait 768 x 1344":
+            case "9:16 - 768 x 1344":
                 Width, Height = 768, 1344
-            case "SDXL - 9:21 Portrait 640 x 1536":
+            case "9:21 - 640 x 1536":
                 Width, Height = 640, 1536
-            case "SDXL - 4:3 Landscape 1152 x 896":
+            case "4:3 - 1152 x 896":
                 Width, Height = 1152, 896
-            case "SDXL - 3:2 Landscape 1216 x 832":
+            case "3:2 - 1216 x 832":
                 Width, Height = 1216, 832
-            case "SDXL - 16:9 Landscape 1344 x 768":
+            case "16:9 - 1344 x 768":
                 Width, Height = 1344, 768
-            case "SDXL - 21:9 Landscape 1536 x 640":
+            case "21:9 - 1536 x 640":
                 Width, Height = 1536, 640
 
         Latent = torch.zeros([Batch_Size, 4, Height // 8, Width // 8])

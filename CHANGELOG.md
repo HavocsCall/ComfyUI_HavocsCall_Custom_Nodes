@@ -1,3 +1,11 @@
+# 3.3.2
+## Changed
+### Basic Nodes
+- Cleaned up the aspect ratio options
+### Combination Nodes
+- Made the Combine String node only combine existing strings
+***
+
 # 3.3.1
 I forgot to include the removal of the Variable names in the Save Image node in 3.3.0 changelog, so updating it now.
 ***

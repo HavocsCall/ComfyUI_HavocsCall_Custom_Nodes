@@ -18,5 +18,6 @@ class HC_Combine_String:
     DESCRIPTION = "Combine two strings into one."
     
     def combine_string(self, String_1, String_2, Separator):
-        combined_String = String_1 + Separator + String_2
+        string_parts = [part for part in [String_1, String_2] if part]
+        combined_String = Separator.join(string_parts)
         return (combined_String,)
