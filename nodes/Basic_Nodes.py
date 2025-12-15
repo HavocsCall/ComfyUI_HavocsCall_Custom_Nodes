@@ -220,8 +220,6 @@ class HC_Sampler_Config:
                 Width, Height = Width, Height
             case "1:1 - 512 x 512":
                 Width, Height = 512, 512
-            case "1:1 - 1024 x 1024":
-                Width, Height = 1024, 1024
             case "2:3 - 512 x 768":
                 Width, Height = 512, 768
             case "3:4 - 512 x 682":
